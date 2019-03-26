@@ -1,36 +1,29 @@
 import React from 'react';
 import TeamCardHeader from './team-card-header/team-card-header';
 
+import axios  from 'axios'
 
 class TeamCardWrapper extends React.Component {
 
     state = {
-        teams: [
-            {
-                id: "001f3d9f-0d44-43d1-8a86-b43575e4e0e1",
-                title: "React team",
-                description: "Where devs and React meet",
-                mailEnabled: false,
-                mail: null,
-                teamUrl: "https://www.google.nl/#",
-                imageUrl: null,
-                photo: null,
-                isTeam: true,
-                isFavorite: true,
-                isMetadataComplete: true,
-                sequence: 2,
-                members: [
-                    {
-                        Name: "Karen Berg",
-                        image: "karenb.jpg"
-                    },
-                    {
-                        Name: "Julien Islo",
-                        image: "julieni.jpg"
-                    }
-                ]
-            }
-        ]
+        teams: []
+    }
+
+    async componentDidMount()  {
+        const team = [];
+        await axios.get('https://reacttrainingapi220190317084903.azurewebsites.net/api/team')
+            .then(function (response) {
+                // handle success
+                team.push(response.data)
+               
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+
+
+            this.setState({'teams': team})
     }
 
     render() {
