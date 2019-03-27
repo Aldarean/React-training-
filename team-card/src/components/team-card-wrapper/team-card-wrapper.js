@@ -1,7 +1,8 @@
 import React from 'react';
 import TeamCardHeader from './team-card-header/team-card-header';
 
-import axios  from 'axios'
+import axios  from 'axios';
+import TeamCardAvatar from '../team-card-wrapper/teamCardAvatar/teamCardAvatar'
 
 class TeamCardWrapper extends React.Component {
 
@@ -37,8 +38,7 @@ class TeamCardWrapper extends React.Component {
                         <p className="team-card-body__title">{team.title}</p>
                         <p>Leden: <span>{team.members.length}</span></p>
                         <ul>
-                          <li>foto 1</li>
-                          <li>foto 2</li>
+                            <TeamCardAvatar members={team.members} />
                         </ul>
                         <p>{team.description}</p>
                     </section>
